@@ -2,7 +2,7 @@ const rootDom = document.querySelector("#root")
 
 import { HeaderSearch } from "./komponenter/HeaderSearch.js";
 
-// let pokelist = []
+let pokelist = []
 
 function render () {
     rootDom.innerHTML = ""
