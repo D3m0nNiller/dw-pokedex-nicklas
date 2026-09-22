@@ -1,35 +1,28 @@
-let pokemonCount;
+let pokemonNumber = 1;
 
-async function getPokemonCount() {
-    const response = await fetch(
-        "https://pokeapi.co/api/v2/pokemon?limit=1"
-    );
+async function pokemonImages() {
+    let pokeUrl = `https://pokeapi.co/api/v2/pokemon/${pokemonNumber}/`;
 
-    const data = await response.json();
+    pokemonNumber += 1;
 
-    pokemonCount = data.count;
-}
+    let response = await fetch(pokeUrl);
+    let pokemon = await response.json();
+    let paddedNumber = getIdFromUrl(pokeUrl).padStart(3, "0")
 
-async function getRandomPokemon() {
-    const randomId = Math.floor(Math.random() * pokemonCount) + 1;
-
-    const response = await fetch(
-        `https://pokeapi.co/api/v2/pokemon/${randomId}`
-    );
-
-    const pokemon = await response.json();
-
-    const paddedNumber = String(randomId).padStart(3, "0");
-
-    rootDom.innerHTML = `
+    rootDom.innerHTML += 
+    /*HTML*/
+    `
         <h2>${pokemon.name}</h2>
-        <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}">
+        <img 
+            src="${baseUrl}${pokemon.id}.png" 
+            alt="${pokemon.name}"
+        >
         <p>#${paddedNumber}</p>
     `;
 }
-
-async function init() {
-    await getPokemonCount();
-    getRandomPokemon();
+async function makePokemon() {
+    for (let i = 0; i < 9; i++) {
+        await pokemonImages();
+    }
 }
-init();
+makePokemon();

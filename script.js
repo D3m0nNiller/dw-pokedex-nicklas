@@ -11,67 +11,42 @@ let imageString = baseUrl + getIdFromUrl(pokeUrl) + '.png'
 
 const rootDom = document.querySelector("#root")
 
-// let pokemonNumber = 1;
+let pokemonNumber = 1;
 
-// async function pokemonImages() {
-//     let pokeUrl = `https://pokeapi.co/api/v2/pokemon/${pokemonNumber}/`;
+async function pokemonImages() {
+    let pokeUrl = `https://pokeapi.co/api/v2/pokemon/${pokemonNumber}/`;
 
-//     pokemonNumber += 3;
+    pokemonNumber += 1;
 
-//     let response = await fetch(pokeUrl);
-//     let pokemon = await response.json();
-//     let paddedNumber = getIdFromUrl(pokeUrl).padStart(3, "0")
+    let response = await fetch(pokeUrl);
+    let pokemon = await response.json();
+    let paddedNumber = getIdFromUrl(pokeUrl).padStart(3, "0")
+    console.log(paddedNumber)
 
-//     rootDom.innerHTML += 
-//     /*HTML*/
-//     `
-//         <h2>${pokemon.name}</h2>
-//         <img 
-//             src="${baseUrl}${pokemon.id}.png" 
-//             alt="${pokemon.name}"
-//         >
-//         <p>#${paddedNumber}</p>
-//     `;
-// }
-
-// async function makePokemon() {
-//     for (let i = 0; i < 34; i++) {
-//         await pokemonImages();
-//     }
-// }
-
-// makePokemon();
-
-
-
-
-const randomId = Math.floor(Math.random() * 1025) + 1;
-
-fetch(`https://pokeapi.co/api/v2/pokemon/${randomId}`)
-  .then(response => response.json())
-
-async function getRandomPokemon() {
-    const randomId = Math.floor(Math.random() * 1025) + 1;
-
-    const response = await fetch(
-        `https://pokeapi.co/api/v2/pokemon/${randomId}`
-    );
-
-    const pokemon = await response.json();
-    let paddedNumber = String(randomId).padStart(3, "0")
-
-    rootDom.innerHTML = 
+    rootDom.innerHTML += 
     /*HTML*/
-
     `
         <h2>${pokemon.name}</h2>
-        <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}">
+        <img 
+            src="${baseUrl}${pokemon.id}.png" 
+            alt="${pokemon.name}"
+        >
         <p>#${paddedNumber}</p>
-    `
+    `;
 }
 
-// Show one when the page loads
-getRandomPokemon();
+async function makePokemon() {
+    for (let i = 0; i < 9; i++) {
+        await pokemonImages();
+    }
+}
+
+makePokemon();
+
+
+
+
+
 
 
 
