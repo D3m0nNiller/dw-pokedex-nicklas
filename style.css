@@ -5,6 +5,18 @@
     font-family: sans-serif;
 }
 
+#root {
+    max-width: 500px;
+    margin: auto;
+    background-color: #f00;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
 /*Header styling---------------------------------------------------*/
 header {
     display: grid;
@@ -33,24 +45,65 @@ header div:first-of-type {
     grid-template-columns: repeat(6, 1fr);
     grid-template-rows: repeat(3, 1fr);
     padding: 0 1em;
-  column-gap: 1em;
-  max-height: 5em;
+    column-gap: 1em;
+    max-height: 5em;
 }
 
 header div:first-of-type input[type="search"] {
     grid-column: 1/6;
     grid-row: 2/3;
     border: none;
-  border: none;
-  border-radius: 3em;
-  padding: 10px;
+    border: none;
+    border-radius: 3em;
+    padding: 10px;
 }
 
 header div:first-of-type button {
     grid-column: 6/7;
     grid-row: 2/3;
     border: none;
-  border-radius: 3em;
-  max-width: 3em;
+    border-radius: 3em;
+    max-width: 3em;
+    cursor: pointer;
+    transition: transform 2s ease;
 }
+
+header div:first-of-type button:hover {
+    transform: scale(1.2);
+}
+
 /*------------------------------------------------------------------*/
+
+/*Main styling-----------------------------------------------------*/
+main {
+    background-color: #fff;
+  border-radius: 10px;
+  margin: 0 5px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(125px, 1fr));
+  gap: 1.2em;
+  padding: 15px;
+  padding-top: 30px;
+}
+
+main div {
+    display: flex;
+    flex-direction: column-reverse;
+    box-shadow: 0px 0px 10px -1px gray;
+  border-radius: 1em;
+  text-align: center;
+  padding: 15px;
+}
+
+main div h3{
+    text-transform: capitalize;
+    font-weight: normal;
+}
+
+main div p {
+    text-align: end;
+    color: #666666
+}
+
+
+/*----------------------------------------------------------------*/
