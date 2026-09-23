@@ -1,15 +1,15 @@
 let baseUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/"
-let pokeUrl = "https://pokeapi.co/api/v2/pokemon/1/"
+let pokeUrl = "https://pokeapi.co/api/v2/pokemon/"
 
 function getIdFromUrl(url) {
     return url.slice(0, -1).split("/").pop()
 }
 
-let newString = getIdFromUrl(pokeUrl)
+// let newString = getIdFromUrl(pokeUrl)
 
-let imageString = baseUrl + getIdFromUrl(pokeUrl) + "png"
+// let imageString = baseUrl + getIdFromUrl(pokeUrl) + "png"
 
-let paddedNumber = getIdFromUrl(pokeUrl).padStart(3, "0")
+// let paddedNumber = getIdFromUrl(pokeUrl).padStart(3, "0")
 
 const rootDom = document.querySelector("#root")
 
@@ -26,13 +26,16 @@ function render() {
         /*HTML*/
         `
             ${pokelist.map(function (pokemon) {
-            console.log(pokemon)
+            const id = getIdFromUrl(pokemon.url);
+            console.log(id);
             return /*HTML*/`
+                <a href="detailed-pokemon.html?id=${id}">
                     <div>
                         <h3>${pokemon.name}</h3>
                         <img src="${baseUrl + getIdFromUrl(pokemon.url) + ".png"}" alt="${pokemon.name}">
                         <p>#${getIdFromUrl(pokemon.url).padStart(3, "0")}</p>
                     </div>
+                </a>
                 `
         }).join("")}
         
@@ -45,7 +48,6 @@ function init() {
         .then(function (response) { return response.json() })
         .then(function (data) {
             pokelist = data.results
-            console.log(data.results)
             render()
         })
 }
