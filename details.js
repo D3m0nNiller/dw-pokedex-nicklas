@@ -1,5 +1,7 @@
 const rootDomDetails = document.querySelector("#detailed-root")
 
+const titleDom = document.querySelector("title")
+
 const params = new URLSearchParams(window.location.search);
 const id = params.get("id");
 
@@ -8,6 +10,8 @@ console.log(id);
 
 
 function render(data) {
+
+    titleDom.textContent = `${data.name}`
     
     const pokemonStats = data.stats.map(function (currentStats){
         const percentNumber = `${currentStats.base_stat}`.padStart(3, "0")
@@ -18,7 +22,7 @@ function render(data) {
     rootDomDetails.innerHTML = /*HTML*/
         `
         <img src="assets/Pokeball.svg" alt="Pokeball" class="background_pokeball">
-        <div>
+        <div class="pokemon_name">
             <a href="index.html"><i class="fa-solid fa-arrow-left go-back"></i></a>
             <h1>${data.name}</h1>
             <p>#${id.padStart(3, "0")}</p>
@@ -26,7 +30,7 @@ function render(data) {
         <img src="${data.sprites.other["official-artwork"].front_default}" alt="${data.name}">
         <i class="fa-solid fa-greater-than next_pokemon"></i>
         <h2>About</h2>
-        <div>
+        <div id="all_information">
             <p><i class="fa-solid fa-weight-hanging"></i> ${data.weight} <br>
                <span class="about_information">Weight</span>
             </p>
@@ -39,11 +43,12 @@ function render(data) {
                 ${data.abilities["1"].ability.name} <br>
                 <span class="about_information">Moves</span>
             </p>
-        </div>
-        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Libero voluptatum tenetur, ad saepe, deserunt eveniet iure esse qui inventore aut aliquid.</p>
-        <h2>Base Stats</h2>
-        <div>
-            <p>${pokemonStats}</p>
+        
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Libero voluptatum tenetur, ad saepe, deserunt eveniet iure esse qui inventore aut aliquid.</p>
+            <h2>Base Stats</h2>
+            <div>
+                <p>${pokemonStats}</p>
+            </div>
         </div>
     `
 }
