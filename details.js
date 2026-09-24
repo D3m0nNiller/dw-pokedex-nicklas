@@ -29,8 +29,8 @@ function render(data) {
         </div>
         <img src="${data.sprites.other["official-artwork"].front_default}" alt="${data.name}">
         <i class="fa-solid fa-greater-than next_pokemon"></i>
-        <h2>About</h2>
         <div id="all_information">
+            <h2>About</h2>
             <p><i class="fa-solid fa-weight-hanging"></i> ${data.weight} <br>
                <span class="about_information">Weight</span>
             </p>
